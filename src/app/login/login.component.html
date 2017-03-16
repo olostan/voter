@@ -1,0 +1,42 @@
+<md-card *ngIf="mode=='login'">
+  <md-card-title>Вхід для зареестрованих мешканців</md-card-title>
+  <md-card-content>
+    <form class="login-form" >
+       <md-input-container class="full-width">
+          <input type="email" name="email" mdInput placeholder="Електронна адреса (e-mail) для входу">
+      </md-input-container>
+       <md-input-container class="full-width">
+          <input type="password" name="password" mdInput placeholder="Пароль">
+      </md-input-container>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button md-raised-button color="primary">Увійти</button>
+    <button md-button (click)="mode='register'">Зарееструвати нового мешканця</button>
+
+  </md-card-actions>
+</md-card>
+
+<md-card *ngIf="mode=='register'">
+  <md-card-title>Реестрація нового мешканця</md-card-title>
+  <md-card-content>
+    <form class="login-form">
+      <md-input-container class="full-width">
+          <input type="email" mdInput placeholder="Електронна адреса (e-mail) для входу">
+      </md-input-container>
+
+       <md-input-container class="full-width">
+          <input type="number" name="apartment" min=1 max=999 mdInput placeholder="Номер Квартири">
+      </md-input-container>
+       <md-input-container class="full-width">
+          <input type="text" name="regCode" mdInput placeholder="Код реестрації">
+          <md-icon mdTooltip="Ваш пароль ви можете знайти..." mdSuffix>help</md-icon>
+      </md-input-container>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button md-raised-button color="primary">Зарееструвати</button>
+    <button md-button  (click)="mode='login'">Назад</button>
+
+  </md-card-actions>
+</md-card>
