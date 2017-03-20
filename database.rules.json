@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "votings": {
+      ".read": "auth != null",
+      "$vote_id": {
+        ".write": "root.child('apartments/'+newData.child('creator').val()+'/uid').val() == auth.uid",
+        ".validate": "newData.hasChildren(['creator', 'name', 'desc','numberOfOptions','options','endDate'])",
+        "endDate": {
+          ".validate": "newData.val() > now"
+        }
+      }
+    },
+    "votes": {
+      "$vote_id": {
+        "$apt": {
+          ".read": "root.child('apartments/'+$apt+'/uid').val() == auth.uid",
+          ".write": "root.child('apartments/'+$apt+'/uid').val() == auth.uid"
+        }
+      }
+    }
+  }
+}

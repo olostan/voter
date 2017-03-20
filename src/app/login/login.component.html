@@ -3,16 +3,18 @@
   <md-card-content>
     <form class="login-form" >
        <md-input-container class="full-width">
-          <input type="email" name="email" mdInput placeholder="Електронна адреса (e-mail) для входу">
+          <input type="email" name="email" mdInput [disabled]='processing'  [(ngModel)]='email' placeholder="Електронна адреса (e-mail) для входу">
       </md-input-container>
        <md-input-container class="full-width">
-          <input type="password" name="password" mdInput placeholder="Пароль">
+          <input type="password" name="password" [(ngModel)]='password' [disabled]='processing' mdInput placeholder="Пароль">
       </md-input-container>
     </form>
   </md-card-content>
   <md-card-actions>
-    <button md-button md-raised-button color="primary">Увійти</button>
-    <button md-button (click)="mode='register'">Зарееструвати нового мешканця</button>
+        <div class="error message" *ngIf='errorMessage'> <md-icon color='warn'>error</md-icon> Error: {{errorMessage}}</div>
+
+    <button md-button md-raised-button color="primary"  (click)="login()" [disabled]='processing'>Увійти</button>
+    <button md-button (click)="mode='register'" [disabled]='processing'>Зарееструвати нового мешканця</button>
 
   </md-card-actions>
 </md-card>
@@ -22,21 +24,29 @@
   <md-card-content>
     <form class="login-form">
       <md-input-container class="full-width">
-          <input type="email" mdInput placeholder="Електронна адреса (e-mail) для входу">
+          <input type="email" name="email" [disabled]='processing'  [(ngModel)]='email' mdInput placeholder="Електронна адреса (e-mail) для входу">
       </md-input-container>
 
        <md-input-container class="full-width">
-          <input type="number" name="apartment" min=1 max=999 mdInput placeholder="Номер Квартири">
+          <input type="number" [(ngModel)]='apartment' [disabled]='processing' name="apartment" min=1 max=999 mdInput placeholder="Номер Квартири">
       </md-input-container>
        <md-input-container class="full-width">
-          <input type="text" name="regCode" mdInput placeholder="Код реестрації">
+          <input type="text" name="code" [(ngModel)]='code' [disabled]='processing' mdInput placeholder="Код реестрації">
           <md-icon mdTooltip="Ваш пароль ви можете знайти..." mdSuffix>help</md-icon>
       </md-input-container>
+      <md-input-container class="full-width">
+          <input type="password" name="password" [(ngModel)]='password' [disabled]='processing' mdInput placeholder="Новий пароль">
+      </md-input-container>
+
     </form>
   </md-card-content>
   <md-card-actions>
-    <button md-button md-raised-button color="primary">Зарееструвати</button>
-    <button md-button  (click)="mode='login'">Назад</button>
+    <div class="error message" *ngIf='errorMessage'> <md-icon color='warn'>error</md-icon> Error: {{errorMessage}}</div>
+
+    <button md-button md-raised-button (click)="register()" [disabled]='processing' color="primary">Зарееструвати</button>
+    <button md-button [disabled]='processing' (click)="mode='login'">Назад</button>
+        <span *ngIf="processing"><md-spinner></md-spinner> обробка...</span>
 
   </md-card-actions>
+
 </md-card>

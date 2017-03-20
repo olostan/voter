@@ -6,3 +6,15 @@ md-card {
 .full-width {
   width: 100%;
 }
+.message {
+    padding: 0;
+    padding-bottom: 10px;
+    display: block;
+}
+.error {
+    color: red;
+}
+md-spinner {
+    width: 20px;height: 20px;
+    display: inline-block;
+}

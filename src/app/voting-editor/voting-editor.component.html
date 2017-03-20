@@ -1,0 +1,30 @@
+<md-card>
+  <md-card-title>Створення нового опитування</md-card-title>
+  <md-card-content>
+    <form>
+        <md-input-container class="full-width">
+          <input mdInput placeholder="Назва" [(ngModel)]="name" name="name">
+        </md-input-container>
+        <md-input-container class="full-width">
+          <textarea rows=5 mdInput placeholder="Опис" [(ngModel)]="desc" name="desc"></textarea>
+        </md-input-container>
+          <md-select placeholder="Кількість варіантів" [(ngModel)]="numberOfOptions"  name="numberOfOptions">
+            <md-option value="2">2</md-option>
+            <md-option value="3">3</md-option>
+            <md-option value="4">4</md-option>
+          </md-select>
+        <md-input-container class="full-width" *ngFor="let idx of (numberOfOptions | range)">
+          <input mdInput placeholder="Варіант #{{idx+1}}" [(ngModel)]="options[idx]" name="option_{{idx}}">
+        </md-input-container>
+        <md-input-container class="full-width">
+          <input mdInput type="date" placeholder="Дата закриття опитування" #endDate (change)="endChanged(endDate.value)" name="endDate">
+        </md-input-container>
+
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button [disabled]='processing || !isValid()' color="primary" (click)="create()" >Створити</button>
+    <span class="error">{{message}}</span>
+  </md-card-actions>
+
+</md-card>

@@ -1,0 +1,13 @@
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+.xsidenav-container {
+    height: 100%;
+}
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+

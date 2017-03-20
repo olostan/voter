@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+html,body {
+    padding: 0;
+    margin:0;
+    height: 100%;
+}
+
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+md-card {
+    max-width: 640px;
+    margin: auto !important;
+}

@@ -1,3 +1,18 @@
-<p>
-  votings works!
-</p>
+<md-card>
+  <md-card-title>Опитування</md-card-title>
+  <md-card-content>
+  <md-nav-list>
+    <md-list-item *ngFor='let voting of (votings |async)' (click)="open(voting)">
+      <md-icon md-list-avatar *ngIf="votingActive(voting)" class="active">speaker_notes</md-icon>
+      <md-icon md-list-avatar *ngIf="!votingActive(voting)" class="not-active">lock</md-icon>
+
+      <span md-line>{{voting.name}} <span class="detail">({{countVoices(voting)}} голосів)</span></span>
+      <span md-line class="sub">Створенно квартирою №{{voting.creator}} {{voting.created | date}}, закриття {{voting.endDate | date}}</span>
+    </md-list-item>
+  </md-nav-list>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button color="primary" (click)="createNew()">Створити нове опитування</button>
+  </md-card-actions>
+
+</md-card>

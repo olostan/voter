@@ -1,0 +1,13 @@
+.desc {
+    border: solid 1px #CCC;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+.radio-button {
+  margin: 5px;
+}

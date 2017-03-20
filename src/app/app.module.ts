@@ -12,7 +12,10 @@ import 'hammerjs';
 import { VotingsComponent } from './votings/votings.component';
 import { LoginComponent } from './login/login.component';
 import { UserDataService} from './user-data.service';
+import { GoogleChartsService} from './google-charts.service';
+
 import { AuthGuard} from './auth.guard';
+import { VotingEditorComponent } from './voting-editor/voting-editor.component';
 
 
 export const firebaseConfig = {
@@ -24,14 +27,30 @@ export const firebaseConfig = {
 };
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Password,
-  method: AuthMethods.Popup
+  method: AuthMethods.Password
 };
+
+import { Pipe, PipeTransform } from '@angular/core';
+import { VotingComponent } from './voting/voting.component';
+import { GoogleChartComponent } from './google-chart/google-chart.component';
+
+@Pipe({ name: 'range' })
+export class RangePipe implements PipeTransform {
+  transform(max: number) {
+    return (new Array(max|0)).fill(0).map( (e,idx) => idx);
+  }
+}
+
 
 @NgModule({
   declarations: [
     AppComponent,
     VotingsComponent,
-    LoginComponent
+    LoginComponent,
+    VotingEditorComponent,
+    RangePipe,
+    VotingComponent,
+    GoogleChartComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +58,9 @@ const myFirebaseAuthConfig = {
     HttpModule,
     AppRoutingModule,
     MaterialModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
-  providers: [UserDataService, AuthGuard],
+  providers: [UserDataService, AuthGuard, GoogleChartsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

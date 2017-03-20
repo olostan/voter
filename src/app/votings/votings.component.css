@@ -1,0 +1,17 @@
+md-card {
+    margin: 10px;
+}
+.sub {
+    color: #AAA;
+}
+md-icon.active[md-list-avatar] {
+    color: green;
+    height: auto;
+}
+md-icon.not-active[md-list-avatar] {
+    color: gray;
+    height: auto;
+}
+.detail {
+    color: #AAA;
+}

@@ -1,0 +1,16 @@
+<md-card>
+    <md-card-title>Опитування {{(voting | async)?.name}}</md-card-title>
+    <md-card-content>
+      <div class="desc">{{(voting | async)?.desc}}</div>
+      <md-radio-group *ngIf="votingActive" class="radio-group" (change)="setVote($event)" [value]="(vote | async)?.$value">
+        <md-radio-button class="radio-button" *ngFor="let option of (voting | async)?.numberOfOptions | range" [value]="option">
+          {{(voting | async)?.options[option]}} ({{( (voting|async).results && (voting|async).results[option]) ?(voting|async).results[option]:0}} голосів)
+        </md-radio-button>
+      </md-radio-group>
+      <app-google-chart *ngIf="(voting | async)?.results" [data]='(voting | async)?.results' [captions]="(voting |async)?.options"></app-google-chart>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="back()" >До переліку опитувань</button>
+    </md-card-actions>
+
+</md-card>
